@@ -9,10 +9,10 @@ end
 
 def additive_check(x,y)
 	if secret(x + y) == (secret(x) + secret(y))
-	 	puts ("The function is additive for (#{x}, #{y}).")
+		puts ("The function is additive for (#{x}, #{y}).")
 		return true 
 	else
-	 	puts ("The function is not additive for (#{x}, #{y}).")
+		puts ("The function is not additive for (#{x}, #{y}).")
 		return false
 	end
 end
@@ -29,6 +29,7 @@ def get_primes
 	@v = gets.chomp.to_i
 
 	Prime.each(@v-1) {|prime| primes << prime}
+
 	print_results(primes)
 end
 
