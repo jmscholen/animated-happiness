@@ -3,31 +3,43 @@
 
 require 'prime'
 
-
 def secret(n)
-	return n
+	n
 end
 
-def is_additive?(x,y)
-	return true if secret(x + y) == (secret(x) + secret(y))
+def additive_check(x,y)
+	if secret(x + y) == (secret(x) + secret(y))
+	 	puts ("The function is additive for (#{x}, #{y}).")
+		return true 
+	else
+	 	puts ("The function is not additive for (#{x}, #{y}).")
+		return false
+	end
+end
+
+def function_additive(results)
+	results.include?(false)? ( puts "The function is not additive." ) : ( puts "The function is additive for all Prime numbers under #{@v}." )
 end
 
 def get_primes
-	primes =[]
+	primes = []
+
 	puts "Enter a integer:"
-	v = gets.chomp.to_i
-	Prime.each(v-1) do |prime|
-		primes << prime
-	end
+
+	@v = gets.chomp.to_i
+
+	Prime.each(@v-1) {|prime| primes << prime}
 	print_results(primes)
 end
 
 def print_results(primes)
+	results = []
+
 	primes.each do |x|
-		primes.each do |y|
-			is_additive?(x,y)? (puts "The function is additive for (#{x}, #{y}).") : (puts "The function is not additive for (#{x}, #{y}).") 
-		end
+		primes.each { |y| additive_check(x,y)? results <<  true : results << false }
 	end
+
+	function_additive(results) 
 end
 
 get_primes
